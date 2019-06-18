@@ -6,7 +6,6 @@
 from DIRAC import gConfig, S_OK, gLogger
 from DIRAC.Core.DISET.RequestHandler import RequestHandler
 from DIRAC.ResourceStatusSystem.Utilities import Synchronizer
-from DIRAC.ResourceStatusSystem.Service.ResourceStatusHandler import convert
 from DIRAC.ResourceStatusSystem.DB.ResourceManagementDB import ResourceManagementDB
 
 
@@ -98,9 +97,6 @@ class ResourceManagementHandler( RequestHandler ):
     :return: S_OK() || S_ERROR()
     '''
 
-    if isinstance(table, dict): #for backward compatibility: conversion is needed
-      params, table = convert(table, params)
-
     gLogger.info( 'insert: %s %s' % ( table, params ) )
 
 
@@ -130,8 +126,6 @@ class ResourceManagementHandler( RequestHandler ):
 
     :return: S_OK() || S_ERROR()
     '''
-    if isinstance(table, dict): #for backward compatibility: conversion is needed
-      params, table = convert(table, params)
 
     gLogger.info( 'select: %s %s' % ( table, params ) )
 
@@ -160,9 +154,6 @@ class ResourceManagementHandler( RequestHandler ):
     :return: S_OK() || S_ERROR()
     '''
 
-    if isinstance(table, dict): #for backward compatibility: conversion is needed
-      params, table = convert(table, params)
-
     gLogger.info( 'delete: %s %s' % ( table, params ) )
 
     res = db.delete( table, params )
@@ -188,9 +179,6 @@ class ResourceManagementHandler( RequestHandler ):
 
     :return: S_OK() || S_ERROR()
     '''
-
-    if isinstance(table, dict): #for backward compatibility: conversion is needed
-      params, table = convert(table, params)
 
     gLogger.info( 'addOrModify: %s %s' % ( table, params ) )
 
